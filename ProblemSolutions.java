@@ -166,7 +166,7 @@ public class ProblemSolutions {
         // ArrayList to store the pairs as strings
         ArrayList<String> pairs = new ArraryList<>();
         // Iterate thru each # 
-        for (for int num : input) {
+        for (int num : input) {
             int complement = k - num;
             // Check if the complement exists
             if (seenNumbers.contains(complement)) {
