@@ -151,11 +151,10 @@ class PriorityQueue<E, P> {
 
     public Node add(E e, P priority) {
         // Create a new node 
-        Node newNode = new Node(e, priority);
+        int index = size();
+        Node newNode = new Node(e, priority, index);
         // Add the new node at the end of the list
         tree.add(newNode);
-        // Index of the new node
-        int index = size() - 1;
         while (index > 0) {
             // Get the parent index
             int parentIndex = (index - 1) / 2;
@@ -168,6 +167,9 @@ class PriorityQueue<E, P> {
             tree.set(index, parent);
             tree.set(parentIndex, newNode);
             // Move back up to parent position
+            newNode.index = parentIndex;
+            parentIndex = index;
+
             index = parentIndex;
         }
         return newNode;
@@ -187,7 +189,7 @@ class PriorityQueue<E, P> {
 
     public boolean contains(E e) {
         for (Node node : tree) {
-            if (node.element.equals(e)) {
+            if (node.getElement().equals(e)) {
                 return true;
             }
         }
