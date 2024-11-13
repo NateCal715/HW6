@@ -164,7 +164,7 @@ public class ProblemSolutions {
         // HashSet to track #'s we've seen already
         HashSet <Integer> seenNumbers = new HashSet<>();
         // ArrayList to store the pairs as strings
-        ArrayList<String> pairs = new ArraryList<>();
+        ArrayList<String> pairs = new ArrayList<>();
         // Iterate thru each # 
         for (int num : input) {
             int complement = k - num;
