@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   NATE CALDERON / SECTION 001
  *
  *   This java file contains the problem solutions for the methods lastBoulder,
  *   showDuplicates, and pair methods. You should utilize the Java Collection
@@ -64,13 +64,29 @@ public class ProblemSolutions {
      */
 
   public static int lastBoulder(int[] boulders) {
-
-      //
-      // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
-      //
-      return -1;
-  }
-
+    // Collections.reverseOrder() ??
+    // Init a PQ for a max-heap using negative values (reverse order) 
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+    // Add contents of array boulders to PQ and turn into negatives
+    for (int boulder : boulders) {
+        pq.offer(-boulder);
+    }
+    // Continue until there is one boulder left
+    while (pq.size() > 1) {
+        // Remove the two "heaviest" boulders (smallest negatives)
+        int x = -pq.poll();
+        int y = -pq.poll();
+        // Check if they are not equal, perform operation and turn into negative again
+        if (x != y) {
+            pq.offer(-(x - y));
+        }
+    }
+      // If there is one boulder left, return its weight
+      // Otherwise, return 0
+    return pq.isEmpty() ? 0 : -pq.peek();
+   
+    }
+  
 
     /**
      * Method showDuplicates
@@ -90,11 +106,26 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> showDuplicates(ArrayList<String> input) {
-
-        //
-        //  YOUR CODE GOES HERE
-        //
-        return new ArrayList<>();  // Make sure result is sorted in ascending order
+        // HashMap to count instances of each string
+        HashMap<String, Integer> countMap = new HashMap<>();
+        // Populate map with counts of strings
+        for (String str : input) {
+            countMap.put(str, countMap.getOrDefault(str, 0) + 1);
+        }
+        // New ArrayList to hold duplicates
+        ArraryList<String> duplicates = new ArraryList<>();
+        // Add duplicates to new ArrayList
+        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                duplicates.add(entry.getKey());
+            }
+        }
+        // Sort Array in ascending order
+        Collections.sort(duplicates);
+        // Return sorted list
+        return duplicates; 
+        
+        // return new ArrayList<>();  // Make sure result is sorted in ascending order
 
     }
 
@@ -130,10 +161,28 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> pair(int[] input, int k) {
-
-        //
-        //  YOUR CODE GOES HERE
-        //
-        return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
+        // HashSet to track #'s we've seen already
+        HashSet <Integer> seenNumbers = new HashSet<>();
+        // ArrayList to store the pairs as strings
+        ArrayList<String> pairs = new ArraryList<>();
+        // Iterate thru each # 
+        for (for int num : input) {
+            int complement = k - num;
+            // Check if the complement exists
+            if (seenNumbers.contains(complement)) {
+                // Form the pair in sorted order
+                int a = Math.min(num, complement);
+                int b = Math.max(num, complement);
+                pairs.add("(" + a + ", " + b + ")");
+            }
+            // Add # to set for checks
+            seenNumbers.add(num);
+        }  
+        // Sort in ascending order
+        Collections.sort(pairs);
+        // Return sorted array
+        return pairs;
+    
+        //return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
     }
 }

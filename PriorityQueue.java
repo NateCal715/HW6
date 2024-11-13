@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   NATE CALDERON / SECTION 001
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -150,9 +150,28 @@ class PriorityQueue<E, P> {
      */
 
     public Node add(E e, P priority) {
-
-        // YOUR CODE GOES HERE
-        return null;
+        // Create a new node 
+        Node newNode = new Node(e, priority);
+        // Add the new node at the end of the list
+        tree.add(newNode);
+        // Index of the new node
+        int index = size() - 1;
+        while (index > 0) {
+            // Get the parent index
+            int parentIndex = (index - 1) / 2;
+            Node parent = tree.get(parentIndex);
+            // Check if the current node has a higher priority than the parent
+            if (comparator.compare(newNode.priority, parent.priority) >= 0) {
+                break;
+            }
+            // If found, swap with parent
+            tree.set(index, parent);
+            tree.set(parentIndex, newNode);
+            // Move back up to parent position
+            index = parentIndex;
+        }
+        return newNode;
+        //return null;
     }
 
 
@@ -167,8 +186,11 @@ class PriorityQueue<E, P> {
      */
 
     public boolean contains(E e) {
-
-        // ADD YOUR CODE HERE
+        for (Node node : tree) {
+            if (node.element.equals(e)) {
+                return true;
+            }
+        }
         return false;
     }
 
