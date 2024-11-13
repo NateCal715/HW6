@@ -113,7 +113,7 @@ public class ProblemSolutions {
             countMap.put(str, countMap.getOrDefault(str, 0) + 1);
         }
         // New ArrayList to hold duplicates
-        ArraryList<String> duplicates = new ArraryList<>();
+        ArrayList<String> duplicates = new ArrayList<>();
         // Add duplicates to new ArrayList
         for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
             if (entry.getValue() > 1) {
