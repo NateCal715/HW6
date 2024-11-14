@@ -167,7 +167,7 @@ class PriorityQueue<E, P> {
             tree.set(index, parent);
             tree.set(parentIndex, newNode);
             // Move back up to parent position
-            newNode.index = parentIndex;
+            newNode = parentIndex;
             parentIndex = index;
 
             index = parentIndex;
