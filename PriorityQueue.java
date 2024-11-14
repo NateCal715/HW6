@@ -167,7 +167,7 @@ class PriorityQueue<E, P> {
             tree.set(index, parent);
             tree.set(parentIndex, newNode);
             // Move back up to parent position
-            newNode.index = parentIndex;
+            //newNode.index = parentIndex;
             parentIndex = index;
 
             index = parentIndex;
@@ -189,7 +189,7 @@ class PriorityQueue<E, P> {
 
     public boolean contains(E e) {
         for (Node node : tree) {
-            if (node.o.equals(e)) {
+            if (node.equals(e)) {
                 return true;
             }
         }
